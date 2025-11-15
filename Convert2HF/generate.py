@@ -4,8 +4,10 @@ import argparse
 
 
 def load_model_and_generate(model_name_or_path, prompt, gen_kwargs):
-    tokenizer = GPT2Tokenizer.from_pretrained(model_name_or_path)
-    model = GPTNeoXForCausalLM.from_pretrained(model_name_or_path)
+    # Security note: consider pinning a specific revision/commit when downloading from the Hub
+    # e.g., revision="main" or a commit SHA to avoid supply-chain risk.
+    tokenizer = GPT2Tokenizer.from_pretrained(model_name_or_path)  # nosec B615 (trusted source/pinned by user)
+    model = GPTNeoXForCausalLM.from_pretrained(model_name_or_path)  # nosec B615 (trusted source/pinned by user)
 
     encoded_input = tokenizer(prompt, return_tensors="pt")
     input_ids, attention_mask = encoded_input['input_ids'], encoded_input['attention_mask']

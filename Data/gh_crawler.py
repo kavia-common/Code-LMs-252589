@@ -69,7 +69,12 @@ def run_query(max_stars):
 		attempts = 0
 		success = False
 		while not success and attempts < 3:
-			request = requests.post('https://api.github.com/graphql', json={'query': query}, headers=headers)
+			request = requests.post(
+				'https://api.github.com/graphql',
+				json={'query': query},
+				headers=headers,
+				timeout=30,
+			)
 			content = request.json()
 			if 'data' not in content or 'search' not in content['data']:
 				# If this is simply a signal to pause querying, wait two minutes.

@@ -16,7 +16,8 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 # As instructed here: https://community.openai.com/t/token-logprobs-when-echo-is-true/9626/2
 # "Transformer models don’t predict the probability of the first token. If you want to get the probability 
 # for your first token you can try to use <|endoftext|> as the first token as a workaround."
-endoftext_token = '<|endoftext|>'
+# Not a secret; this is a public special token literal used by models, safe to keep.
+endoftext_token = '<|endoftext|>'  # nosec B105
 
 def ppl(avg_logprob):
     return 2 ** (-avg_logprob / math.log(2))
@@ -98,7 +99,7 @@ if __name__ == '__main__':
         print(f'total tokens: {tokens_count}')
         print(f'Average loss: {-log_probs_sum / tokens_count}')
         print(f'Perplexity: {ppl(log_probs_sum / tokens_count)}')
-        print(f'Ignored files:')
+        print('Ignored files:')
         for f in ignored_files:
             print(f'\t{f}')
             new_location = os.path.join(excluded_dirs, os.path.dirname(f))

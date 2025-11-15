@@ -5,7 +5,7 @@ from shutil import copyfile
 
 import pygments
 from pygments.lexers import get_lexer_by_name
-from pygments.token import Token
+
 
 # Basic config options.
 MAX_FILE_SIZE = 1024 ** 2  # 1 MB

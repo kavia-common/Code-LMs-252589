@@ -1,0 +1,25 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-select = [
+  "F",    # pyflakes
+  "E",    # pycodestyle errors
+  "W",    # pycodestyle warnings
+  "I",    # isort
+  "B",    # flake8-bugbear
+]
+ignore = [
+  # Long lines are common in URLs/strings in this repo; adjust as needed
+  "E501",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = []
+profile = "black"
+
+[tool.flake8]
+max-line-length = 100
+extend-ignore = E203,W503
+
+[tool.radon]
+cc_min = "B"

@@ -81,4 +81,4 @@ if __name__ == "__main__":
     print(f"Save HuggingFace model to {args.hf_save_dir} ...")
     model.save_pretrained(args.hf_save_dir)
     tokenizer.save_pretrained(args.hf_save_dir)
-    print(f"Finished.")
+    print("Finished.")
